@@ -2,9 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-## estou testando esta parte, não está no exercício pedido... é para 
-# aprender um pouco mais e poder analisar as informações geradas!
-
 def gerar_graficos(file_path, output_path):
     """Gera gráficos com base nos dados do arquivo CSV fornecido."""
 
@@ -14,14 +11,15 @@ def gerar_graficos(file_path, output_path):
     # Definir o estilo do gráfico
     plt.style.use('default')
 
-    # Gráfico para produção mínima, média e máxima por lactação (Questão 1a)
+    # Gráfico de Linhas para produção mínima, média e máxima por lactação (Questão 1a)
     if 'Animal' in df.columns and 'Prod. Mínima - 1º Lact.' in df.columns:
         fig, ax = plt.subplots(figsize=(14, 8))
-        df.plot(x='Animal', y=[
+        for column in [
             'Prod. Mínima - 1º Lact.', 'Prod. média - 1º Lact.', 'Prod. máxima - 1º Lact.',
             'Prod. Mínima - 2º Lact.', 'Prod. média - 2º Lact.', 'Prod. máxima - 2º Lact.',
             'Prod. Mínima - 3º+ Lact.', 'Prod. média - 3º+ Lact.', 'Prod. máxima - 3º+ Lact.'
-        ], kind='bar', ax=ax)
+        ]:
+            ax.plot(df['Animal'], df[column], marker='o', label=column)
 
         plt.title('Produção de Leite por Animal e Lactação')
         plt.xlabel('Animal')
@@ -30,29 +28,28 @@ def gerar_graficos(file_path, output_path):
         plt.xticks(rotation=90)
         plt.tight_layout()
 
-        plt.savefig(os.path.join(output_path, 'grafico_questao_1a.png'))
+        plt.savefig(os.path.join(output_path, 'grafico_questao_1a_linhas.png'))
         plt.close()
 
-    # Gráficos para EQM por lactação (Questões 1b, 1c e 1d)
+    # Gráfico de dispersão para EQM por lactação (Questão 1b e 1c)
     elif 'Animal Utilizado' in df.columns and 'EQM' in df.columns:
-        # Verifica se o arquivo contém a coluna 'Lactação Utilizada'
         if 'Lactação Utilizada' in df.columns:
             fig, ax = plt.subplots(figsize=(14, 8))
             for lactacao in df['Lactação Utilizada'].unique():
                 df_lactacao = df[df['Lactação Utilizada'] == lactacao]
-                df_lactacao.plot(x='Animal Utilizado', y='EQM', kind='bar', ax=ax, label=f'Lactação {lactacao}')
+                ax.scatter(df_lactacao['Animal Utilizado'], df_lactacao['EQM'], label=f'Lactação {lactacao}')
 
-            plt.title('EQM por Animal e Lactação')
+            plt.title('Dispersão do EQM por Animal e Lactação')
             plt.xlabel('Animal Utilizado')
             plt.ylabel('EQM')
             plt.legend(title='Lactações')
             plt.xticks(rotation=90)
             plt.tight_layout()
 
-            plt.savefig(os.path.join(output_path, 'grafico_questao_1b.png'))
+            plt.savefig(os.path.join(output_path, 'grafico_questao_1b_1c_dispersion.png'))
             plt.close()
         else:
-            # Para os arquivos 1d_lactacao_1, 2 e 3, que não têm 'Lactação Utilizada'
+            # Gráfico de barras para arquivos 1d_lactacao_1, 2 e 3, que não têm 'Lactação Utilizada'
             fig, ax = plt.subplots(figsize=(14, 8))
             df.plot(x='Animal Utilizado', y='EQM', kind='bar', ax=ax)
 
@@ -63,11 +60,11 @@ def gerar_graficos(file_path, output_path):
             plt.tight_layout()
 
             if 'resultado_questao_1d_lactacao_1.csv' in file_path:
-                plt.savefig(os.path.join(output_path, 'grafico_questao_1d_lactacao_1.png'))
+                plt.savefig(os.path.join(output_path, 'grafico_questao_1d_lactacao_1_barras.png'))
             elif 'resultado_questao_1d_lactacao_2.csv' in file_path:
-                plt.savefig(os.path.join(output_path, 'grafico_questao_1d_lactacao_2.png'))
+                plt.savefig(os.path.join(output_path, 'grafico_questao_1d_lactacao_2_barras.png'))
             elif 'resultado_questao_1d_lactacao_3.csv' in file_path:
-                plt.savefig(os.path.join(output_path, 'grafico_questao_1d_lactacao_3.png'))
+                plt.savefig(os.path.join(output_path, 'grafico_questao_1d_lactacao_3_barras.png'))
             plt.close()
 
 if __name__ == "__main__":
