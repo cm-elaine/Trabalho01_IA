@@ -1,0 +1,52 @@
+2. Como você analisa os dados do exercício em relação a capacidade de generalização deste modelo 
+de ajuste linear aplicado?
+
+Questão 1a: Estatísticas da Produção por Animal e Lactação
+Calculamos estatísticas (mín, med, max) da produção por animal e lactação.
+A tabela gerada permite observar o comportamento da produção em diferentes animas e lactações.
+
+Capacidade de generalização: O resultado gerado fornece uma visão geral entretanto, não demonstra diretamente
+a capacidade de generalização mas, as estatísticas como média e o máximo podem ajudar a entender o 
+intervalo e o comportamento da produção.
+
+-------
+
+Questão 1b: Ajuste Linear e Erro Quadrático Médio
+Ajuste linear e cálculo de EQM para cada grupo de animal e lactação, usando curva ajustada para prever
+a produção de outros animais.
+A tabela gerada mostra os coeficientes da reta (a e b) e o EQM para cada combinação animal. O EQM ajuda a entender
+o desempenho do ajuste linear em prever a produção.
+
+Capacidade de generalização: Se o EQM é baixo para muitos grupos, pode ser um indicativo de que este modelo é 
+eficaz para prever a produção para dados similares. Caso EQM seja elevado para alguns grupos, sugere que o modelo
+pode não generalizar bem para todos os animais e lactações.
+
+-----
+
+3. Questão 1c: Desempenho da Curva em Outros Animais
+Verifica o desempenho da curva ajustada para um animal e lactação quando aplicada para prever a produção
+de outros animais e lactações.
+A tabela mostra o EQM para previsão de produção em diferentes combinações de animal e lactação.
+
+Capacidade de Generalização: Se o EQM varia significativamente, isso pode indicar que o ajuste linear para um
+animal/lactação não se generaliza bem para outros.
+
+------
+
+Questão 1d: Menor Erro Médio por Lactação
+Identificar quais animais tiveram o menor erro médio em seus ajustes de curva para a 1ª, 2ª e 3ª lactação
+quando aplicados a outros animais.
+As tabelas identificam os animais com menor erro médio para cada lactação. Este fator indica quais ajustes 
+são mais preciso na previsão de produção em outras lactações.
+
+Capacidade de Generalização: Animais com menor erro médio para ajustes em todas as lactações podem ter uma melhor
+capacidade de generalização.
+
+
+Análise geral:
+O modelo de ajuste linear pode funcionar bem para alguns dados específicos, mas seu desempenho pode variar
+quando aplicado a diferentes grupos ou lactações.
+
+Se houver grande variabilidade nos dados, o modelo pode ter dificuldade para capturar todas as nuances.
+
+
